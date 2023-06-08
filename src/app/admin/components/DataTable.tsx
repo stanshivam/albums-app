@@ -18,7 +18,7 @@ export const DataTable: React.FC<DataTableProps> = ({ columns, rows }) => {
         columns={columns}
         initialState={{
           pagination: {
-            paginationModel: { page: 0, pageSize: 8 },
+            paginationModel: { page: 0, pageSize: 5 },
           },
         }}
         pageSizeOptions={[5, 10]}
