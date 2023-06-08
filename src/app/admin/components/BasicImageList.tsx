@@ -10,7 +10,7 @@ interface ImageData {
   thumbnailUrl: string;
 }
 
-interface BasicImageListProps {
+export interface BasicImageListProps {
   imageData: ImageData[];
 }
 

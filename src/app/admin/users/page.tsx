@@ -6,7 +6,6 @@ import { GridCellParams } from "@mui/x-data-grid";
 import { useRouter } from 'next/navigation';
 import DataTable from "../components/DataTable";
 
-
 interface User {
   id: number;
   name: string;
