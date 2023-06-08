@@ -7,7 +7,7 @@ function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
   console.info("You clicked a breadcrumb.");
 }
 
-interface BreadcrumbItem {
+export interface BreadcrumbItem {
   href?: string;
   title: string;
   onClick?: () => void;
@@ -22,6 +22,7 @@ export const Breadcrumbs: React.FC<{ breadcrumbs: BreadcrumbItem[] }> = ({
         {breadcrumbs.map((crumb: BreadcrumbItem) => {
           return (
             <Link
+              key={crumb.title}
               underline="hover"
               color="inherit"
               style={{ cursor: "pointer" }}

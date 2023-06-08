@@ -18,7 +18,7 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </head>
-      <body className={inter.className}><div>global layout</div>{children}</body>
+      <body className={inter.className}>{children}</body>
     </html>
   )
 }

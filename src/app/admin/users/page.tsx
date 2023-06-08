@@ -5,6 +5,7 @@ import { superFetch } from "@/utils/superFetch";
 import { GridCellParams } from "@mui/x-data-grid";
 import { useRouter } from 'next/navigation';
 import DataTable from "../components/DataTable";
+import { Breadcrumbs } from "../components/Breadcrumbs";
 
 interface User {
   id: number;
@@ -18,6 +19,7 @@ interface User {
 
 const Users = () => {
   const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
   const columns = [
     { field: "id", headerName: "ID", width: 70 },
@@ -67,16 +69,28 @@ const Users = () => {
 
   const fetchUsers = async () => {
     try {
+      setLoading(true)
       const response = await superFetch("GET", endPoints.USERS.default);
       const users = await response.json();
       setUsers(getComputedUsers(users));
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching users:", error);
     }
   };
 
+  if (loading) return <div>Loading...</div>
+
   return (
     <div>
+        <Breadcrumbs
+        breadcrumbs={[
+          {
+            title: "Users",
+            href: "/admin/users",
+          },
+        ]}
+      />
       <DataTable columns={columns} rows={users} />
     </div>
   );

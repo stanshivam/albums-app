@@ -4,8 +4,9 @@ import { superFetch } from "@/utils/superFetch";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { Breadcrumbs } from "../../../components/Breadcrumbs";
+import AlbumsList from "./components/AlbumsList";
 
-interface Album {
+export interface Album {
   id: number;
   userId: number;
   title: string;
@@ -23,18 +24,21 @@ const UserAlbums: React.FC<UserAlbumsProps> = ({
   params: { userid: string };
 }) => {
   const [albums, setAlbums] = useState<Album[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
   useEffect(() => {
     const fetchAlbums = async () => {
       try {
+        setLoading(true);
         const response = await superFetch(
           "get",
           endPoints.ALBUMS.default(params.userid)
         );
         const data = await response.json();
         setAlbums(data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching albums:", error);
       }
@@ -42,6 +46,8 @@ const UserAlbums: React.FC<UserAlbumsProps> = ({
 
     fetchAlbums();
   }, [params.userid]);
+
+  if (loading) return <div>Loading...</div>
 
   return (
     <div>
@@ -61,19 +67,7 @@ const UserAlbums: React.FC<UserAlbumsProps> = ({
         ]}
       />
       <h2>User Albums</h2>
-      <ul>
-        {albums.map((album) => (
-          <li
-            onClick={() => {
-              router.push(`/admin/users/${params.userid}/album/${album.id}`);
-            }}
-            style={{ cursor: "pointer" }}
-            key={album.id}
-          >
-            {album.title}
-          </li>
-        ))}
-      </ul>
+      <AlbumsList photosUrl={`/admin/users/${params.userid}/album/`} albums={albums} />
     </div>
   );
 };

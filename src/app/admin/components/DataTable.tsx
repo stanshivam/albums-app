@@ -12,7 +12,7 @@ interface DataTableProps {
 
 export const DataTable: React.FC<DataTableProps> = ({ columns, rows }) => {
   return (
-    <div style={{ height: 550, width: '100%' }}>
+    <div style={{ height: 371, width: '100%' }}>
       <DataGrid
         rows={rows}
         columns={columns}

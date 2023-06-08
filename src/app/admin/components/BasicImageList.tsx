@@ -1,6 +1,5 @@
-import * as React from 'react';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
+import * as React from "react";
+import Image from "next/image";
 
 interface ImageData {
   albumId: number;
@@ -14,21 +13,20 @@ export interface BasicImageListProps {
   imageData: ImageData[];
 }
 
-export const BasicImageList: React.FC<BasicImageListProps> = ({ imageData }) => {
+export const BasicImageList: React.FC<BasicImageListProps> = ({
+  imageData,
+}) => {
   return (
-    <ImageList sx={{ width: '100%', height: 'auto' }} cols={5}>
+    <div className="image-grid">
       {imageData.map((item) => (
-        <ImageListItem key={item.id}>
-          <img
-            src={`${item.thumbnailUrl}?w=164&h=164&fit=crop&auto=format`}
-            srcSet={`${item.thumbnailUrl}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-            alt={item.title}
-            loading="lazy"
-          />
-        </ImageListItem>
+        <Image
+          key={item.id}
+          src={`${item.url}`}
+          alt={item.title}
+          width={200}
+          height={200}
+        />
       ))}
-    </ImageList>
+    </div>
   );
 };
-
-
