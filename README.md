@@ -1,3 +1,31 @@
+Tech Stack:
+NextJS - latest
+Typescript - latest
+Material UI - latest
+React Testing Library
+Jest
+0 vulnerabilities
+
+Some info about this repo:
+This repo has been created from scratch uses latest nextjs
+It has the new next js routing, I have used dynamic nested routing.
+The app redirects from root page to /admin/users route
+It has three routes users., user albums, and useralbum photos
+Modular structure, common components are separate
+
+If I would have provided with more time span than I would have worked on the following tasks:
+I would have used HOC for render hijacking (for displaying the loading)
+I would have created separate file for all the side effects like api calls
+Improved test coverage
+Performance optimization (pure components, memoization etc)
+More refactoring
+An image slider to display original size images one by one in dialog box
+Simple layout with header and drawer is just for demonstration, there is a global layout then admin specific layout
+On the photos listing page, although images are being lay loaded but we can use virtualized list for better performance
+I would have wrapped next Image component in another because it increases maintainability. (the same can used for other such components)
+A better readme.md  :)
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
